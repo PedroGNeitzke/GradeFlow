@@ -12,9 +12,10 @@ body{
     --primary-hover: #2563EB;
 
     /* Backgrounds */
-    --background: #0B1120;
-    --surface: #111827;
-    --surface-light: #1F2937;
+    --background: #F3F4F6;
+    --surface: #FFFFFF;
+    --surface-light: #F9FAFB;
+    --surface-darker: #111827;
 
     /* Bordas */
     --border: #334155;
@@ -42,7 +43,11 @@ body{
     --sidebar-width: 200px;
 
     /* Transições */
-    --transition: 2s ease-in-out;
+    --transition: .3s ease-in-out;
+}
+
+.layout{
+    display: flex;
 }
 
 /* HEADER */
@@ -53,14 +58,21 @@ body{
 
     height: var(--header-height);
 
-    padding: 0 24px;
+    padding: 0;
 
     background-color: var(--surface);
 }
 
 .header-left{
+    width: var(--sidebar-width);
+    padding: 20px;
+    height: 100%;
+
     display: flex;
     align-items: center;
+    justify-content: center;
+
+    background-color: var(--surface-darker);
 }
 
 #logo{
@@ -72,6 +84,7 @@ body{
     flex: 1;
     display: flex;
     justify-content: center;
+    padding-left: 24px;
 }
 .header-center input{
     width: 30%;
@@ -101,7 +114,7 @@ body{
     border: none;
     background: none;
     cursor: pointer;
-    color: var(--text);
+    color: var(--surface-darker);
     transition: var(--primary);
 }
 
@@ -121,7 +134,7 @@ body{
     border: none;
     background: none;
     cursor: pointer;
-    color: var(--text);
+    color: var(--surface-darker);
 }
 
 .profile-btn img{
@@ -154,9 +167,10 @@ body{
     color: var(--text);
     text-decoration: none;
     transition: background-color var(--transition);
+    color: var(--surface-darker);
 }
 .dropdown a:hover{
-    background-color: var(--surface-light);
+    background-color: var(--primary);
 }
 
 .dropdown.active {
@@ -172,7 +186,7 @@ aside{
     left: 0;
     width: var(--sidebar-width);
     height: calc(100vh - var(--header-height));
-    background-color: var(--surface);
+    background-color: var(--surface-darker);
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -186,9 +200,69 @@ aside a{
     color: var(--text);
     text-decoration: none;
     border-radius: var(--radius-sm);
-    transition: background-color var(--transition) color var(--transition);
+    transition: background-color var(--transition);
+    color: var(--text);
 }
 aside a:hover{
-    background-color: var(--surface-light);
-    color: var(--primary);
+    background-color: var(--primary);
+    color: var(--text);
+}
+
+/* MAIN CONTENT */
+
+.dashboard{
+    margin-left: calc(var(--sidebar-width) + 40px);
+    width: calc(100% - var(--sidebar-width) - 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 24px;
+
+}
+
+.top-cards{
+    display: flex;
+    gap: 20px;
+}
+
+.card{
+    flex: 1;
+    min-height: 140px;
+    background-color: var(--surface);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+.middle-section{
+    display: flex;
+    gap: 20px;
+}
+
+.performance-card{
+    flex: 2;
+    min-height: 140px;
+    background-color: var(--surface);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+.status-card{
+    flex: 1;
+    min-height: 140px;
+    background-color: var(--surface);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+.activities-card{
+    flex: 1;
+    min-height: 140px;
+    background-color: var(--surface);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
 }
