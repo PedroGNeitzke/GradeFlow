@@ -6,6 +6,17 @@ body{
     background-color: var(--background);
 }
 
+body::before{
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: calc(var(--sidebar-width) + 40px);
+    height: 100vh;
+    background-color: var(--surface-darker);
+    z-index: -1;
+}
+
 :root {
     /* Cores principais */
     --primary: #3B82F6;
@@ -26,8 +37,19 @@ body{
 
     /* Status */
     --success: #22C55E;
+    --success-rgb: 34 197 94;
+
     --warning: #F59E0B;
+    --warning-rgb: 245 158 11;
+
     --danger: #EF4444;
+    --danger-rgb: 239 68 68;
+
+    --blue: #3B82F6;
+    --blue-rgb: 59 130 246;
+
+    --purpple: #8B5CF6;
+    --purpple-rgb: 139 92 246;
 
     /* Sombras */
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -83,18 +105,18 @@ body{
 .header-center{
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     padding-left: 24px;
 }
 .header-center input{
-    width: 30%;
+    width: 40%;
     height: 40px;
     max-width: 500px;
     padding: 0 16px;
     border-radius: var(--radius);
     border: 1px solid var(--border);
     background-color: var(--surface);
-    color: var(--text);
+    color: var(--surface-darker);
     outline: none;
 }
 
@@ -109,13 +131,13 @@ body{
 }
 
 .notification-btn{
-    width: 22px;
-    height: 22px;
+    width: 30px;
+    height: 30px;
     border: none;
     background: none;
     cursor: pointer;
     color: var(--surface-darker);
-    transition: var(--primary);
+    transition: var(--transition);
 }
 
 .notification-btn:hover{
@@ -221,6 +243,15 @@ aside a:hover{
 
 }
 
+/* PRIMEIRA LINHA CARDS */
+
+.painel{
+    background-color: var(--surface);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
 .top-cards{
     display: flex;
     gap: 20px;
@@ -228,12 +259,64 @@ aside a:hover{
 
 .card{
     flex: 1;
-    min-height: 140px;
+    min-height: 110px;
     background-color: var(--surface);
     border-radius: var(--radius);
     padding: 20px;
     box-shadow: var(--shadow);
 }
+
+.card p{
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 16px 0 12px;
+    color: var(--surface-darker);
+}
+
+.progressbar{
+    width: 100%;
+    height: 10px;
+    background-color: var(--surface-light);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-top: 10px;
+    border: 1px solid var(--success);
+}
+
+.progressbar div{
+    height: 100%;
+    background-color: var(--success);
+    border-radius: var(--radius-sm);
+    width: 73%;
+}
+
+.cont{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#media{
+    background-color: rgba(var(--success-rgb) / 10%);
+    border: 1px solid var(--success);
+}
+
+#materia{
+    background-color: rgba(var(--blue-rgb) / 10%);
+    border: 1px solid var(--blue);
+}
+
+#atividades{
+    background-color: rgba(var(--purpple-rgb) / 10%);
+    border: 1px solid var(--purpple);
+}
+
+#pendencias{
+    background-color: rgba(var(--warning-rgb) / 10%);
+    border: 1px solid var(--warning);
+}
+
+/* SEGUNDA LINHA CARDS */
 
 .middle-section{
     display: flex;
@@ -241,28 +324,194 @@ aside a:hover{
 }
 
 .performance-card{
-    flex: 2;
-    min-height: 140px;
-    background-color: var(--surface);
-    border-radius: var(--radius);
-    padding: 20px;
-    box-shadow: var(--shadow);
+    flex: 1;
+    min-height: 250px;
 }
 
 .status-card{
     flex: 1;
-    min-height: 140px;
-    background-color: var(--surface);
-    border-radius: var(--radius);
-    padding: 20px;
-    box-shadow: var(--shadow);
+    min-height: 250px;
 }
+
+.materias{
+    display: grid;
+    grid-template-columns: 120px 70px 1fr 50px;
+    align-items: center;
+    gap: 15px;
+}
+
+.progressbar2{
+    width: 90%;
+    height: 8px;
+    background-color: var(--surface-light);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-top: 10px;
+    border: 1px solid var(--border);
+}
+
+.matematicapg{
+    height: 100%;
+    background-color: var(--success);
+    border-radius: var(--radius-sm);
+    width: 85%;
+}
+
+.fisicapg{
+    height: 100%;
+    background-color: var(--danger);
+    border-radius: var(--radius-sm);
+    width: 55%;
+}
+
+.historiapg{
+    height: 100%;
+    background-color: var(--success);
+    border-radius: var(--radius-sm);
+    width: 88%;
+}
+
+.redacaopg{
+    height: 100%;
+    background-color: var(--danger);
+    border-radius: var(--radius-sm);
+    width: 25%;
+}
+
+.biologiapg{
+    height: 100%;
+    background-color: var(--warning);
+    border-radius: var(--radius-sm);
+    width: 65%;
+}
+
+.line{
+    width: 100%;
+    height: 1px;
+    background-color: var(--border);
+    opacity: 0.5;
+}
+
+#link{
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+    margin: 5px;
+    padding: 5px;
+}
+#link:hover{
+    background-color: var(--primary);
+    color: var(--text);
+    margin: 5px;
+    padding: 5px;
+    border-radius: var(--radius-sm);
+}
+
+.graficcontainer{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.chart-legend{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.legend-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend-color{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.approved{
+    background-color: var(--success);
+}
+
+.recovery{
+    background-color: var(--warning);
+}
+
+.failed{
+    background-color: var(--danger);
+}
+
+/* TERCEIRA LINHA CARDS */
 
 .activities-card{
     flex: 1;
     min-height: 140px;
-    background-color: var(--surface);
-    border-radius: var(--radius);
-    padding: 20px;
-    box-shadow: var(--shadow);
+
+}
+
+.activity-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+.activity-item{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+}
+
+.date{
+    width: 25px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(var(--warning-rgb) / 60%);
+    border: 2px solid var(--warning);
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+}
+
+.date p,
+.date strong{
+    color: var(--warning);
+    margin: 0;
+}
+
+.date p{
+    font-size: 1.0rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.date strong{
+    font-size: 1.0rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.aval p{
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--surface-darker);
+    margin: 0;
+}
+
+.aval h4{
+    font-size: 1.0rem;
+    font-weight: 700;
+    color: var(--surface-darker);
+    margin: 0;
+}
+
+.activities-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

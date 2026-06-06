@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GradeFlow</title>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -28,12 +29,12 @@
 
             <div class="header-right">
                 <button class="notification-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
                     <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
                     </svg>
                 </button>
             
-                        <div class="profile-menu">
+            <div class="profile-menu">
 
                 <button class="profile-btn">
                     <img src="/img/avatar.png" alt="avatar">
@@ -92,23 +93,199 @@
 
             <section class="top-cards">
 
-                <div class="card"></div>
-                <div class="card"></div>
-                <div class="card"></div>
-                <div class="card"></div>
+                <div class="card painel" id="media">
+                    <div class="cont">
+                        <i data-lucide="graduation-cap"></i>
+                        <span>Média Geral</span>
+                    </div>
+
+                    <p>7,3/10</p>
+
+                    <div class="progressbar">
+                        <div></div>
+                    </div>
+
+                </div>
+
+                <div class="card painel" id="materia">
+                    <div class="cont">
+                        <i data-lucide="book-open"></i>
+                        <span>Matérias cadastradas</span>
+                    </div>
+
+                    <p>16</p>
+                </div>
+
+                <div class="card painel" id="atividades">
+                    <div class="cont">
+                        <i data-lucide="book-check"></i>
+                        <span>Atividades registradas</span>
+                    </div>
+                    <p>24</p>
+                </div>
+
+                <div class="card painel" id="pendencias">
+                    <div class="cont">
+                        <i data-lucide="alert-triangle"></i>
+                        <span>Pendentes</span>
+                    </div>
+                    <p>3</p>
+                </div>
 
             </section>
 
             <section class="middle-section">
 
-                <div class="performance-card"></div>
-                <div class="status-card"></div>
+                <div class="performance-card painel">
+
+                    <div class="cont">
+                        <i data-lucide="graduation-cap"></i>
+                        <span>Desempenho por matéria</span>
+                    </div>
+                    <div>
+                        <br>
+                        <div class="materias">
+                            <span>Matemática</span>
+                            <p>8,5/10</p>
+                            <div class="progressbar2">
+                                <div class="matematicapg"></div>
+                            </div>
+                            <p>85%</p>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <div class="materias">
+                            <span>Física</span>
+                            <p>5,5/10</p>
+                            <div class="progressbar2">
+                                <div class="fisicapg"></div>
+                            </div>
+                            <p>55%</p>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <div class="materias">
+                            <span>História</span>
+                            <p>8,8/10</p>
+                            <div class="progressbar2">
+                                <div class="historiapg"></div>
+                            </div>
+                            <p>88%</p>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <div class="materias">
+                            <span>Redação</span>
+                            <p>2,5/10</p>
+                            <div class="progressbar2">
+                                <div class="redacaopg"></div>
+                            </div>
+                            <p>25%</p>
+                        </div>
+
+                        <div class="materias">
+                            <span>Biologia</span>
+                            <p>6,5/10</p>
+                            <div class="progressbar2">
+                                <div class="biologiapg"></div>
+                            </div>
+                            <p>65%</p>
+                        </div>
+
+                    </div>
+                    <br>
+                    <a id="link" href="#">Mostrar todas as matérias</a>
+                </div>
+                <div class="status-card painel">
+
+                    <div class="cont">
+                        <i data-lucide="notebook-pen"></i>
+                        <span>Situação atual</span>
+                    </div>
+                    <br>
+                    <div class="graficcontainer">
+                        <div>
+                            <canvas id="situationchart"></canvas>
+                        </div>
+
+                        <div class="chart-legend">
+
+                            <div class="legend-item">
+                                <span class="legend-color approved"></span>
+                                <span>Aprovadas</span>
+                                <strong>12</strong>
+                            </div>
+
+                            <div class="legend-item">
+                                <span class="legend-color recovery"></span>
+                                <span>Recuperação</span>
+                                <strong>3</strong>
+                            </div>
+
+                            <div class="legend-item">
+                                <span class="legend-color failed"></span>
+                                <span>Reprovadas</span>
+                                <strong>1</strong>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
 
             </section>
 
             <section class="bottom-section">
 
-                <div class="activities-card"></div>
+                <div class="activities-card painel">
+                    <div class="cont">
+                        <i data-lucide="calendar-1"></i>
+                        <span>Próximas atividades</span>
+                    </div>
+
+                    <div class="activity-container">
+                        <div class="activity-item">
+
+                            <div class="date">
+                                <p>14</p>
+                                <strong>Jul</strong>
+                            </div>
+                            <div class="aval">
+                                <h4>Prova de Matemática</h4>
+                                <p>Em 4 dias</p>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="date">
+                                <p>17</p>
+                                <strong>Jul</strong>
+                            </div>
+                            <div class="aval">
+                                <h4>Trabalho história</h4>
+                                <p>Em 7 dias</p>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="date">
+                                <p>20</p>
+                                <strong>Jul</strong>
+                            </div>
+                            <div class="aval">
+                                <h4>Prova de História</h4>
+                                <p>Em 10 dias</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="activities-footer">
+                        <a id="link" href="#">Ver agenda completa</a>
+                    </div>
+                </div>
 
             </section>
 
